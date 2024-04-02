@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Update = () => {
     const [name, setName] = useState("");
@@ -37,7 +38,7 @@ const Update = () => {
 
         try {
             await axios.put(`http://localhost:5000/contacts/${id}`, updatedinfo);
-            alert("Contact updated successfully");
+            Swal.fire("Information updated");
         } catch (error) {
             console.error('Error updating contact:', error);
         }

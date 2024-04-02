@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Swal from 'sweetalert2'
 import "./App.css"; 
+import { useNavigate } from "react-router-dom";
 
 const Crud = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [url, setUrl] = useState("");
+  const naviget=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,9 +22,18 @@ const Crud = () => {
 
     try {
       await axios.post("http://localhost:5000/contacts", obj);
-      alert("Added");
+      Swal.fire({
+        text: "Information Added Successfully",
+        icon: "success"
+      });
+      naviget("/display")
+      
     } catch (error) {
-      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     }
   };
 
