@@ -48,7 +48,7 @@ const Display = () => {
     // Function to handle update action
     const handleUpdate = (id) => {
         console.log('Updating contact with ID:', id);
-        // Implement logic to navigate to the update page or open a modal for updating the contact
+        
     };
     return (
         <div className="display-container">
