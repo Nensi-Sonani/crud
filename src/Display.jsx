@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 const Display = () => {
     const [all, setAll] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [currentPage, setCurrentPage] = useState(1); 
+    const navigate =useNavigate()
     const itemsPerPage = 5;
     useEffect(() => {
         fetchData();
@@ -47,8 +49,8 @@ const Display = () => {
     };
     // Function to handle update action
     const handleUpdate = (id) => {
-        console.log('Updating contact with ID:', id);
-        
+        // console.log("v");
+        navigate(`/edit/${id}`)
     };
     return (
         <div className="display-container">
@@ -79,18 +81,27 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
 const DisplayItems = ({ items, handleDelete, handleUpdate }) => {
     return (
         <div className="display-items">
+            <div className='display-head'>
+                <p className='no'>NO</p>
+                <p className='img'>IMG</p>
+                <p className='dh-name'>NAME</p>
+                <p className='dh-email'>EMAIL</p>
+                <p className='pn'>PHONE NO</p>
+                <p className='edit'>EDIT</p>
+                <p className='delete'>DELETE</p>
+            </div>
             {items.map((item, id) => (
                 <div key={id} className="display-item">
                     <span>{id + 1}</span>
                     {/* <div> */}
-                        <img src={item.url} alt="" />
+                        <img src={item.url} alt="" className='w-14' />
                     {/* </div> */}
-                    <p className="name">{item.name}</p>
-                    <p className="email">{item.email}</p>
-                    <p className="phone">{item.number}</p>
+                    <p className="name w-14">{item.name}</p>
+                    <p className="email w-14">{item.email}</p>
+                    <p className="phone w-14">{item.number}</p>
                     {/* FontAwesome icons for delete and update */}
-                    <FontAwesomeIcon icon={faPenSquare} onClick={() => handleUpdate(item.id)} style={{cursor:"pointer"}}/>
-                    <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item.id)} style={{cursor:"pointer"}} />
+                    <FontAwesomeIcon icon={faPenSquare} onClick={() => handleUpdate(item.id)} style={{cursor:"pointer",color:"#163172"}}/>
+                    <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item.id)} style={{cursor:"pointer",color:"#ff0000"}} />
                 </div>
             ))}
         </div>
