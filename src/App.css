@@ -17,6 +17,8 @@
 }
 
 .search-bar {
+  max-width: 1100px;
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 
@@ -133,10 +135,6 @@
   color: #007bff;
 }
 
-.crud-form {
-  margin-top: 20px;
-}
-
 .input-group {
   margin-bottom: 20px;
 }
@@ -166,8 +164,4 @@
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
 }
